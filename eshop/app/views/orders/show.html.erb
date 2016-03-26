@@ -1,0 +1,13 @@
+<h1>Order</h1>
+
+<p>Order_id: <%= @order.id %></p>
+
+<% @purchased_items.each do |item| %>
+    <ul>
+      <li>
+        <p>Product id: <%= item.product_id %></p>
+        <p>Quantity: <%= item.quantity %></p>
+        <p>Total Price: <%= number_to_currency(item.unit_cost * item.quantity)  %></p>
+      </li>
+    </ul>
+<% end %>

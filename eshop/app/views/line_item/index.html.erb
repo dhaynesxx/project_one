@@ -1,0 +1,23 @@
+<h1>Shopping Cart</h1>
+<% @total_price = 0 %>
+<% @total_tax = 0 %>
+<ul>
+  <% @cart_items.each do |item| %>
+    <% @total_price += (item.unit_cost * item.quantity) %>
+    <% @total_tax += (item.unit_tax * item.quantity) %>
+    <li>
+      <p>Product id: <%= item.product_id %></p>
+      <p>Quantity: <%= item.quantity %>
+        <%= link_to (button_tag "-"), update_item_path(:id => item.id, :sign => -1), :method => :put %>
+        <%= link_to (button_tag "+"), update_item_path(:id => item.id, :sign => 1), :method => :put %></p>
+      <p>Total Price: <%= number_to_currency(item.unit_cost * item.quantity)  %></p>
+      <p><%= link_to (button_tag "Remove from Cart"), delete_item_path(:id => item.id), :method => :delete %></p>
+    </li>
+  <% end %>
+    <li>
+      <p></p>
+      <p>Grand Total: <%= number_to_currency(@total_price) %></p>
+      <p>Includes GST: <%= number_to_currency(@total_tax) %></p>
+      <p><%= link_to (button_tag "Purchase Items"), new_order_path %></p>
+    </li>
+</ul>

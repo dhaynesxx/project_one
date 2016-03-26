@@ -9,7 +9,7 @@
 #  logo         :text
 #  email        :text
 #  phone        :text
-#  tax_rate     :decimal(, )
+#  tax_rate     :float
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #

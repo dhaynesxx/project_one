@@ -1,0 +1,47 @@
+<h1>Edit User</h1>
+
+<%= form_for @user do |f| %>
+    <p>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+    </p>
+    <p>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    </p>
+    <p>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+    </p>
+    <p>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    </p>
+    <p>
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+    </p>
+    <p>
+    <%= f.label :birthday %>
+    <%= f.date_field :birthday %>
+    </p>
+    <p>
+    <%= f.label :reward_level %>
+    <%= f.text_field :reward_level %>
+    </p>
+    <p>
+    <%= f.label :admin %>
+    <%= f.check_box :admin %>
+    </p>
+    <p>
+    <%= f.label :master %>
+    <%= f.check_box :master %>
+    </p>
+    <p>
+    <%= f.label :business_id %>
+    <%= f.select :business_id, Business.pluck(:trading_name, :id) %>
+    </p>
+    <p>
+    <%= f.submit %>
+    </p>
+<% end %>

@@ -1,0 +1,47 @@
+<%= form_for @product do |f| %>
+
+<fieldset>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</fieldset>
+<fieldset>
+  <%= f.label :desciption %>
+  <%= f.text_field :description %>
+</fieldset>
+<fieldset>
+  <%= f.label :image %>
+  <%= f.url_field :image %>
+</fieldset>
+<fieldset>
+  <%= f.label :inventory %>
+  <%= f.text_field :inventory %>
+</fieldset>
+<fieldset>
+  <%= f.label :unit_cost_price %>
+  <%= f.text_field :unit_cost_price %>
+</fieldset>
+<fieldset>
+  <%= f.label :tax_applies %>
+  <%= f.check_box :tax_applies %>
+</fieldset>
+<fieldset>
+  <%= f.label :price_regular %>
+  <%= f.text_field :price_regular %>
+</fieldset>
+<fieldset>
+  <%= f.label :price_sale %>
+  <%= f.text_field :price_sale %>
+</fieldset>
+<fieldset>
+  <%= f.label :on_sale %>
+  <%= f.check_box :on_sale %>
+</fieldset>
+<fieldset>
+  <%= f.label :business_id %>
+  <%= f.select :business_id, Business.pluck(:trading_name, :id) %>
+</fieldset>
+<fieldset>
+  <%= f.submit %>
+</fieldset>
+
+<% end %>

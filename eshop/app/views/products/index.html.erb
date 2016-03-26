@@ -1,0 +1,13 @@
+<h1>All Products</h1>
+<ul>
+<% @products.each do |product| %>
+    <li>
+        <%= link_to(image_tag(product.image, :class => "thumb"), product) %>
+        <br>
+        <%= link_to product.name, product %>
+        <br>
+        <%= number_to_currency(product.price_regular) %>
+        <p><%= link_to (button_tag "Add to Cart"), products_path(:id => product.id) %></p>
+    </li>
+<% end %>
+</ul>

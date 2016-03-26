@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160325023333) do
+ActiveRecord::Schema.define(version: 20160326022702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,19 +23,20 @@ ActiveRecord::Schema.define(version: 20160325023333) do
     t.text     "logo"
     t.text     "email"
     t.text     "phone"
-    t.decimal  "tax_rate"
+    t.float    "tax_rate"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
 
   create_table "line_items", force: :cascade do |t|
     t.integer  "quantity"
-    t.decimal  "unit_cost"
-    t.decimal  "unit_tax"
+    t.float    "unit_cost"
+    t.float    "unit_tax"
     t.integer  "order_id"
     t.integer  "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
 
   create_table "order_statuses", force: :cascade do |t|
@@ -51,9 +52,9 @@ ActiveRecord::Schema.define(version: 20160325023333) do
 
   create_table "orders", force: :cascade do |t|
     t.text     "invoice_number"
-    t.decimal  "total_cost"
-    t.decimal  "total_tax"
-    t.decimal  "discount_amount"
+    t.float    "total_cost"
+    t.float    "total_tax"
+    t.float    "discount_amount"
     t.integer  "user_id"
     t.integer  "order_status_id"
     t.datetime "created_at",      null: false
@@ -63,15 +64,16 @@ ActiveRecord::Schema.define(version: 20160325023333) do
   create_table "products", force: :cascade do |t|
     t.text     "name"
     t.integer  "inventory"
-    t.decimal  "unit_cost_price"
+    t.float    "unit_cost_price"
     t.text     "description"
-    t.decimal  "price_regular"
+    t.float    "price_regular"
     t.boolean  "tax_applies",     default: true
-    t.decimal  "price_sale"
+    t.float    "price_sale"
     t.boolean  "on_sale",         default: false
     t.integer  "business_id"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.text     "image"
   end
 
   create_table "users", force: :cascade do |t|
