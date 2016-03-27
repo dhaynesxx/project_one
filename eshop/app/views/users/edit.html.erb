@@ -25,22 +25,26 @@
     <%= f.label :birthday %>
     <%= f.date_field :birthday %>
     </p>
-    <p>
-    <%= f.label :reward_level %>
-    <%= f.text_field :reward_level %>
-    </p>
-    <p>
-    <%= f.label :admin %>
-    <%= f.check_box :admin %>
-    </p>
-    <p>
-    <%= f.label :master %>
-    <%= f.check_box :master %>
-    </p>
-    <p>
-    <%= f.label :business_id %>
-    <%= f.select :business_id, Business.pluck(:trading_name, :id) %>
-    </p>
+    <% if @user.admin == true %>
+        <p>
+        <%= f.label :reward_level %>
+        <%= f.text_field :reward_level %>
+        </p>
+        <p>
+        <%= f.label :admin %>
+        <%= f.check_box :admin %>
+        </p>
+    <% end %>
+    <% if @user.master == true %>
+        <p>
+        <%= f.label :master %>
+        <%= f.check_box :master %>
+        </p>
+        <p>
+        <%= f.label :business_id %>
+        <%= f.select :business_id, Business.pluck(:trading_name, :id) %>
+        </p>
+    <% end %>
     <p>
     <%= f.submit %>
     </p>

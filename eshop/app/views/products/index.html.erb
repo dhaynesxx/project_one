@@ -1,13 +1,21 @@
 <h1>All Products</h1>
-<ul>
+
 <% @products.each do |product| %>
-    <li>
+    <div class='product-index-container'>
         <%= link_to(image_tag(product.image, :class => "thumb"), product) %>
         <br>
-        <%= link_to product.name, product %>
+        <p><%= link_to product.name, product %></p>
         <br>
-        <%= number_to_currency(product.price_regular) %>
-        <p><%= link_to (button_tag "Add to Cart"), products_path(:id => product.id) %></p>
-    </li>
+        <% unless product.on_sale? %>
+            <p><%= number_to_currency(product.price_regular) %></p>
+            <br>
+        <% end %>
+        <% if product.on_sale? %>
+            <p class='product-sale'><%= number_to_currency(product.price_regular) %></p>
+            <p><%= number_to_currency(product.price_sale) %></p>
+        <% end %>
+        <% if @current_user.present? && @current_user.admin == false %>
+            <p><%= link_to (button_tag "Add to Cart"), cart_add_path(:id => product.id, :page => 'index') %></p>
+        <% end %>
+    </div>
 <% end %>
-</ul>

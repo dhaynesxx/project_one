@@ -1,2 +1,19 @@
-<h1>Orders#index</h1>
-<p>Find me in app/views/orders/index.html.erb</p>
+<h1>Orders</h1>
+
+<% @orders.each do |order| %>
+    <% order_status(order.id) %>
+    <% if order.user_id.present? %>
+        <% user = User.find order.user_id %>
+    <% end %>
+    <div class='order-index-line'>
+        Order id: <%= order.id %> |
+        Invoice_number: <%= order.invoice_number %> |
+        Total Cost: <%= number_to_currency(order.total_cost) %> |
+        Total Tax: <%= number_to_currency(order.total_tax) %> |
+        User: <%= user.name %> |
+        Order Status: <%= order.order_status %>
+        <% if @current_user.admin? %>
+            <%= link_to "View", order_path(order.id) %>
+        <% end %>
+    </div>
+<% end %>

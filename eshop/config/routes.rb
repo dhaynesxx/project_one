@@ -11,12 +11,14 @@ Rails.application.routes.draw do
   post '/login' => 'session#create'
   delete '/login' => 'session#destroy'
 
-  get '/product/add' => 'products#add_cart'
+
   resources :products, :except => [:destroy]
 
+  get '/order/:id/update' => 'orders#update', :as => 'update_order'
   resources :orders, :except => [:destroy]
 
   get '/cart' => 'line_item#index'
+  get '/cart/add' => 'line_item#add_cart'
   put '/cart/:id/:sign' => 'line_item#change_qty', :as => 'update_item'
   delete '/cart/:id' => 'line_item#destroy', :as => 'delete_item'
   resources :line_items

@@ -7,32 +7,46 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-  <nav>
-      <%= link_to "Home", root_path %>
-      <% if @current_user.present? %>
-          <% if @current_user.admin? %>
-            <%= link_to "All users", users_path %>
-          <% end %>
-          <%= link_to "Edit profile", edit_user_path(@current_user) %>
-          <%= link_to "Logout #{ @current_user.email}", login_path, :method => :delete %>
-      <% else %>
-          <%= link_to "Signup", signup_path %>
-          <%= link_to "Login", login_path  %>
-      <% end %>
-      <br>
-      <%= link_to "All Products", products_path %>
-      <%= link_to "New Product", new_product_path %>
-      <%= link_to "Shopping Cart", cart_path %>
+  <header>
+    <nav>
+        <%= link_to "Home", root_path %>
+        <% if @current_user.present? %>
+            <%= link_to "Edit profile", edit_user_path(@current_user) %>
+            <%= link_to "Logout #{ @current_user.email}", login_path, :method => :delete %>
+        <% else %>
+            <%= link_to "Signup", signup_path %>
+            <%= link_to "Login", login_path  %>
+        <% end %>
     </nav>
+    <div class='search-nav'>
+        <input type="text" id='product-search-field'>
+        <button id='product-search-button'>Search</button>
+        <%= link_to(button_tag('Shopping Cart', :id => 'cart-button'), cart_path) %>
+    </div>
+    <div class='main-menu-wrapper'>
+      <div class='main-menu-list'>
+        <%= link_to "All Products", products_path %>
+        <% if @current_user.present? %>
+          <% if @current_user.admin? %>
+            <%= link_to "New Product", new_product_path %>
+            <%= link_to "All Users", users_path %>
+            <%= link_to "All Orders", orders_path %>
+          <% else %>
+            <%= link_to "Previous Orders", orders_path %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </header>
 
+  <div class='main-area'>
     <% if flash[:error].present? %>
-      s<h2 class='error'>
+      <h2 class='error'>
         <%= flash[:error] %>
       </h2>
     <% end %>
 
-<%= yield %>
-
+    <%= yield %>
+  </div>
 </body>
 </html>

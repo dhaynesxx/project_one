@@ -1,16 +1,28 @@
 <h1><%= @product.name %></h1>
 
 <%= image_tag(@product.image, :class => "feature") %>
-<p><%= link_to (button_tag "Add to Cart"), product_add_path(:id => @product.id) %></p>
-<p>Price: <%= @product.price_regular %></p>
+<% unless @current_user.admin? %>
+    <p><%= link_to (button_tag "Add to Cart"), cart_add_path(:id => @product.id, :page => 'show') %></p>
+<% end %>
+<% unless @product.on_sale? %>
+    <p>Price: <%= number_to_currency(@product.price_regular) %></p>
+<% end %>
+<% if @product.on_sale? %>
+    <p class="product-sale">Price: <%= number_to_currency(@product.price_regular) %></p>
+    <p>Sale Price: <%= number_to_currency(@product.price_sale) %></p>
+    <%  %>
+    <%  %>
+<% end %>
 <p>Description: <%= @product.description %></p>
-
-<p>Stock Available: <%= @product.inventory %></p>
-<p>Cost Price: <%= number_to_currency(@product.unit_cost_price) %></p>
-<p>Taxed: <%= @product.tax_applies %></p>
-<p>Regular Price: <%= number_to_currency(@product.price_regular) %></p>
-<p>Sale Price: <%= number_to_currency(@product.price_sale) %></p>
-<p>Currently on sale: <%= @product.on_sale %></p>
-<p>Business: <%= @product.business_id %></p>
-
-<%= link_to "Edit Product", edit_product_path %>
+<% if @current_user.admin? %>
+    <p>Stock Available: <%= @product.inventory %></p>
+    <p>Cost Price: <%= number_to_currency(@product.unit_cost_price) %></p>
+    <p>Taxed: <%= @product.tax_applies %></p>
+    <p>Regular Price: <%= number_to_currency(@product.price_regular) %></p>
+    <p>Sale Price: <%= number_to_currency(@product.price_sale) %></p>
+    <p>Currently on sale: <%= @product.on_sale %></p>
+    <%= link_to "Edit Product", edit_product_path %>
+<% end %>
+<% if @current_user.master? %>
+    <p>Business: <%= @product.business_id %></p>
+<% end %>

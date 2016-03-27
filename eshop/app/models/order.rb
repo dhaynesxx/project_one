@@ -11,6 +11,11 @@
 #  order_status_id :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  order_status    :text
+#  purchase_date   :date
+#  payment_date    :date
+#  shipped_date    :date
+#  finalised_date  :date
 #
 
 class Order < ActiveRecord::Base

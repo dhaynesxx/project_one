@@ -1,13 +1,27 @@
+<% order_status(@order.id) %>
 <h1>Order</h1>
 
 <p>Order_id: <%= @order.id %></p>
 
+<ul>
 <% @purchased_items.each do |item| %>
-    <ul>
       <li>
         <p>Product id: <%= item.product_id %></p>
         <p>Quantity: <%= item.quantity %></p>
         <p>Total Price: <%= number_to_currency(item.unit_cost * item.quantity)  %></p>
       </li>
-    </ul>
+<% end %>
+      <li>
+          <p>Total Price: <%= number_to_currency(@order.total_cost) %></p>
+          <p>includes GST: <%= number_to_currency(@order.total_tax) %></p>
+      </li>
+</ul>
+<p>Order Status: <%= @order.order_status %></p>
+<p>Purchase Date: <%= @order.purchase_date %></p>
+<p>Payment Date: <%= @order.payment_date %></p>
+<p>Shipped Date: <%= @order.shipped_date %></p>
+<p>Finalised Date: <%= @order.finalised_date %></p>
+
+<% if @current_user.admin? %>
+      <%= link_to(button_tag("Update Status"), edit_order_path(@order.id) ) %>
 <% end %>

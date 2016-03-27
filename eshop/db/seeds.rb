@@ -2,9 +2,10 @@ Business.destroy_all
 b = Business.create :company_name => 'Test Pty Ltd', :trading_name => "The Shop", :tax_rate => "10%"
 
 User.destroy_all
-u1 = User.create :email => 'abc@ga.co', :password => 'chicken', :password_confirmation => 'chicken', :admin => true, :master => true, :name => 'Dave'
-u2 = User.create :email => 'def@ga.co', :password => 'chicken', :password_confirmation => 'chicken', :admin => true, :master => false, :name => 'Bill'
-u3 = User.create :email => 'ghi@ga.co', :password => 'chicken', :password_confirmation => 'chicken', :admin => false, :master => false, :name => 'Bob'
+u1 = User.create :email => 'master@ga.co', :password => 'chicken', :password_confirmation => 'chicken', :admin => true, :master => true, :name => 'Dave'
+u2 = User.create :email => 'admin@ga.co', :password => 'chicken', :password_confirmation => 'chicken', :admin => true, :master => false, :name => 'Bill'
+u3 = User.create :email => 'user1@ga.co', :password => 'chicken', :password_confirmation => 'chicken', :admin => false, :master => false, :name => 'Bob'
+u3 = User.create :email => 'user2@ga.co', :password => 'chicken', :password_confirmation => 'chicken', :admin => false, :master => false, :name => 'Jane'
 
 Product.destroy_all
 p1 = Product.create :name => "Beer", :image => 'http://www.pizznlove-valdisere.com/wp-content/uploads/2014/02/peroni-nastro-azzuro.png', :inventory => 100, :unit_cost_price => 2.0, :description => "this is a beer", :price_regular => 5.0
