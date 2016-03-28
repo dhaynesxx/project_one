@@ -16,6 +16,7 @@
 #  payment_date    :date
 #  shipped_date    :date
 #  finalised_date  :date
+#  total_revenue   :float
 #
 
 require 'test_helper'

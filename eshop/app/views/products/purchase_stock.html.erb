@@ -1,0 +1,13 @@
+<h1>Purchase Stock</h1>
+
+<%= image_tag @product.image %>
+<p>Name: <%= @product.name %></p>
+<%= form_for(@product, url: add_stock_path) do |f| %>
+    <%= f.label :inventory %>
+    <%= f.text_field :inventory %>
+    <br>
+    <%= f.label :unit_cost_price %>
+    <%= f.text_field :unit_cost_price %>
+    <br>
+    <%= f.submit %>
+<% end %>

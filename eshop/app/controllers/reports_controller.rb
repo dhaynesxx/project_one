@@ -16,8 +16,16 @@ def inventory
     @products = Product.all
 end
 
-def purchase
+def sales
+    @products = Product.all
+    @line_items = LineItem.all
+    @orders = Order.all
+end
 
+def profit
+  @products = Product.all
+  @line_items = LineItem.all
+  @orders = Order.all
 end
 
 private

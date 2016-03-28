@@ -19,9 +19,12 @@
         <% end %>
     </nav>
     <div class='search-nav'>
-        <input type="text" id='product-search-field'>
-        <button id='product-search-button'>Search</button>
-        <%= link_to(button_tag('Shopping Cart', :id => 'cart-button'), cart_path) %>
+        <%= form_tag(products_path, :method => "get", id: "search-form") do %>
+            <%= text_field_tag :search, params[:search], placeholder: "Search Products", id: "product-search-field" %>
+            <%= submit_tag "Search", id: "product-search-button" %>
+            <%= link_to(button_tag('Shopping Cart', :id => 'cart-button'), cart_path) %>
+        <% end %>
+
     </div>
     <div class='main-menu-wrapper'>
       <div class='main-menu-list'>
@@ -32,7 +35,8 @@
             <%= link_to "All Users", users_path %>
             <%= link_to "All Orders", orders_path %>
             <%= link_to "Inventory", reports_inventory_path %>
-            <%= link_to "Add Inventory", reports_purchase_path %>
+            <%= link_to "Sales", reports_sales_path %>
+            <%= link_to "Profit", reports_profit_path %>
           <% else %>
             <%= link_to "Previous Orders", orders_path %>
           <% end %>

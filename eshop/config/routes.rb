@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   post '/login' => 'session#create'
   delete '/login' => 'session#destroy'
 
-
+  get '/product/:id/purchase' => 'products#purchase_stock', :as => 'purchase_stock'
+  patch '/product/:id/add' => 'products#add_stock', :as => 'add_stock'
   resources :products, :except => [:destroy]
 
   get '/order/:id/update' => 'orders#update', :as => 'update_order'
@@ -24,6 +25,7 @@ Rails.application.routes.draw do
   resources :line_items
 
   get '/reports/inventory' => 'reports#inventory'
-  get '/reports/purchase' => 'reports#purchase'
+  get '/reports/sales' => 'reports#sales'
+  get '/reports/profit' => 'reports#profit'
 
 end

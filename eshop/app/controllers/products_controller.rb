@@ -1,6 +1,10 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
+    if params[:search]
+      @products = Product.search(params[:search])
+    else
+      @products = Product.all
+    end
   end
 
   def new
@@ -27,8 +31,26 @@ class ProductsController < ApplicationController
     @product = Product.find params[:id]
   end
 
+  def purchase_stock
+    @product = Product.find params[:id]
+  end
+
+  def add_stock
+    quantity = product_params.first.last.to_f
+    cost = product_params.sort[1].last.to_f
+    product_existing = Product.find params[:id]
+    current_inventory = product_existing.inventory
+    current_unit_cost_price = product_existing.unit_cost_price
+    total_cost = current_inventory * current_unit_cost_price + quantity * cost
+    product_existing.inventory = quantity + current_inventory
+    product_existing.unit_cost_price = total_cost / (current_inventory + quantity)
+    product_existing.save
+    redirect_to product_path
+  end
+
+
   private
   def product_params
-    params.require(:product).permit(:name, :image, :inventory, :unit_cost_price, :description, :price_regular, :tax_applies, :price_sale, :on_sale, :business_id)
+    params.require(:product).permit(:name, :image, :inventory, :unit_cost_price, :description, :price_regular, :tax_applies, :price_sale, :on_sale, :business_id, :search)
   end
 end

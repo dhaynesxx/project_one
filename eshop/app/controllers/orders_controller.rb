@@ -17,17 +17,20 @@ class OrdersController < ApplicationController
       order = Order.create :user_id => @current_user.id
       total_price = 0
       total_tax = 0
+      total_cost = 0
       @cart_items.each do |item|
           product = Product.find item.product_id
           product.inventory -= item.quantity
           product.save
           item.order_id = order.id
           item.save
-          total_price += (item.unit_cost * item.quantity)
+          total_price += (item.unit_price * item.quantity)
           total_tax += (item.unit_tax * item.quantity)
+          total_cost += (item.unit_cost * item.quantity)
       end
-      order.total_cost = total_price
+      order.total_revenue = total_price
       order.total_tax = total_tax
+      order.total_cost = total_cost
       order.purchase_date = DateTime.now
       order.save
       redirect_to order_path(order.id)

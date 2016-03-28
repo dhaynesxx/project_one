@@ -10,7 +10,7 @@
     <% Order.where(:user_id => user.id).each do |order| %>
         <% total += order.total_cost %>
     <% end %>
-    Total Sales: <%= total %>
+    Total Sales: <%= number_to_currency(total) %>
     <%= link_to "Orders", orders_path(:id => user.id) %>
     <br>
 <% end %>

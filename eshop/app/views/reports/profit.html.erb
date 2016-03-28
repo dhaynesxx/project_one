@@ -1,0 +1,38 @@
+<h1>Profit Report</h1>
+
+<% @grand_total_revenue = 0 %>
+<% @grand_total_cost = 0 %>
+<% @grand_total_tax = 0 %>
+<% @gross_profit = 0 %>
+<% @products.each do |product| %>
+    <%= image_tag product.image, :class => 'thumb'  %>
+    <p>Name: <%= product.name %></p>
+    <% total_revenue = 0 %>
+    <% total_cost = 0 %>
+    <% total_tax = 0 %>
+    <% total_quantity = 0 %>
+    <% lines = @line_items.where(:product_id => product.id) %>
+    <% lines.each do |item| %>
+        <% total_revenue += item.unit_price * item.quantity %>
+        <% total_cost += item.unit_cost * item.quantity %>
+        <% total_tax += item.unit_tax * item.quantity %>
+        <% total_quantity += item.quantity %>
+    <% end %>
+    <p>Total Sales (units): <%= total_quantity %></p>
+    <p>Total Sales: <%= number_to_currency(total_revenue) %></p>
+    <p>Total Cost: <%= number_to_currency(total_cost) %></p>
+    <p>Total Tax: <%= number_to_currency(total_tax) %></p>
+    <% gross_profit = total_revenue - total_tax - total_cost %>
+    <p>Gross Profit: <%= number_to_currency(gross_profit) %></p>
+    <p>Gross Profit %: <%= number_to_percentage(gross_profit / (total_revenue - total_tax) * 100) %></p>
+    <br>
+    <% @grand_total_revenue += total_revenue %>
+    <% @grand_total_tax += total_tax %>
+    <% @grand_total_cost += total_cost %>
+    <% @gross_profit += gross_profit %>
+<% end %>
+<p>Grand Total Sales: <%= number_to_currency(@grand_total_revenue) %></p>
+<p>Grand Total Tax: <%= number_to_currency(@grand_total_tax) %></p>
+<p>Grand Total Cost: <%= number_to_currency(@grand_total_cost) %></p>
+<p>Gross Profit: <%= number_to_currency(@gross_profit) %></p>
+<p>Gross Profit %: <%= number_to_percentage(@gross_profit / (@grand_total_revenue - @grand_total_tax) * 100) %></p>

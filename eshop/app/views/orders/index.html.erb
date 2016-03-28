@@ -8,7 +8,7 @@
     <div class='order-index-line'>
         Order id: <%= order.id %> |
         Invoice_number: <%= order.invoice_number %> |
-        Total Cost: <%= number_to_currency(order.total_cost) %> |
+        Total Cost: <%= number_to_currency(order.total_revenue) %> |
         Total Tax: <%= number_to_currency(order.total_tax) %> |
         User: <%= user.name %> |
         Order Status: <%= order.order_status %>

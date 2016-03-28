@@ -8,15 +8,15 @@ class LineItemController < ApplicationController
 
   def add_cart
     product = Product.find params[:id]
-    line = LineItem.create :product_id => product.id, :quantity => 1, :user_id => @current_user.id, :unit_tax => 0
+    line = LineItem.create :product_id => product.id, :quantity => 1, :user_id => @current_user.id, :unit_cost => product.unit_cost_price ,:unit_tax => 0
     if product.on_sale?
-      line.unit_cost = product.price_sale
+      line.unit_price = product.price_sale
     else
-      line.unit_cost = product.price_regular
+      line.unit_price = product.price_regular
     end
     unless product.tax_applies == false
       business = Business.find product.business_id
-      line.unit_tax = line.unit_cost - (line.unit_cost * (1 - (1 / (1 + business.tax_rate))))
+      line.unit_tax = line.unit_price - (line.unit_price * (1 - (1 / (1 + business.tax_rate))))
     end
     line.save
     if params[:page] == 'index'

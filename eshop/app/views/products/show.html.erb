@@ -22,6 +22,7 @@
     <p>Sale Price: <%= number_to_currency(@product.price_sale) %></p>
     <p>Currently on sale: <%= @product.on_sale %></p>
     <%= link_to "Edit Product", edit_product_path %>
+    <%= link_to "Add Stock", purchase_stock_path %>
 <% end %>
 <% if @current_user.master? %>
     <p>Business: <%= @product.business_id %></p>
