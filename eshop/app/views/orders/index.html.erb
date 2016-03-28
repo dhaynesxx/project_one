@@ -12,8 +12,6 @@
         Total Tax: <%= number_to_currency(order.total_tax) %> |
         User: <%= user.name %> |
         Order Status: <%= order.order_status %>
-        <% if @current_user.admin? %>
-            <%= link_to "View", order_path(order.id) %>
-        <% end %>
+        <%= link_to "View", order_path(order.id) %>
     </div>
 <% end %>

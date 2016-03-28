@@ -1,0 +1,11 @@
+<h1>Inventory</h1>
+<% i = 0 %>
+<% @products.each do |product| %>
+    Product ID: <%= product.id %> |
+    Name: <%= product.name %> |
+    Total stock on hand: <%= product.inventory + @product_inventory_awaiting_delivery[i] %> |
+    Stock awaiting shipping: <%= @product_inventory_awaiting_delivery[i] %> |
+    Stock available for sale: <%= product.inventory %>
+    <% i += 1 %>
+    <br>
+<% end %>

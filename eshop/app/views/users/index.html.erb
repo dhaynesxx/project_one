@@ -6,11 +6,11 @@
     Phone: <%= user.phone %> |
     Birthday: <%= user.birthday %> |
     Reward Level: <%= user.reward_level %> |
+    <% total = 0 %>
     <% Order.where(:user_id => user.id).each do |order| %>
-        <% @total = 0 %>
-        <% @total += order.total_cost %>
+        <% total += order.total_cost %>
     <% end %>
-    Total Sales: <%= @total %>
+    Total Sales: <%= total %>
     <%= link_to "Orders", orders_path(:id => user.id) %>
     <br>
 <% end %>

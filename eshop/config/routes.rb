@@ -22,4 +22,8 @@ Rails.application.routes.draw do
   put '/cart/:id/:sign' => 'line_item#change_qty', :as => 'update_item'
   delete '/cart/:id' => 'line_item#destroy', :as => 'delete_item'
   resources :line_items
+
+  get '/reports/inventory' => 'reports#inventory'
+  get '/reports/purchase' => 'reports#purchase'
+
 end
