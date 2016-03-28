@@ -2,10 +2,10 @@ class ReportsController < ApplicationController
     before_action :authorise
 
 def inventory
-    products = Product.all
+    @products = Product.all
     @product_inventory_awaiting_delivery =[]
     orders_awaiting_delivery = Order.where(:shipped_date => nil )
-    products.each do |product|
+    @products.each do |product|
         quantity = 0
         orders_awaiting_delivery.each do |order|
             items = LineItem.where(:order_id => order.id).where(:product_id => product.id)
@@ -13,7 +13,6 @@ def inventory
         end
         @product_inventory_awaiting_delivery.push(quantity)
     end
-    @products = Product.all
 end
 
 def sales

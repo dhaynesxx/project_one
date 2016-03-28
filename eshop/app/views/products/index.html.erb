@@ -14,8 +14,11 @@
             <p class='product-sale'><%= number_to_currency(product.price_regular) %></p>
             <p><%= number_to_currency(product.price_sale) %></p>
         <% end %>
-        <% if @current_user.present? && @current_user.admin == false %>
+        <% if @current_user.present? && product.inventory > 0 %>
             <p><%= link_to (button_tag "Add to Cart"), cart_add_path(:id => product.id, :page => 'index') %></p>
+        <% end %>
+        <% if product.inventory == 0 %>
+            <p><%= button_tag "Out of Stock" %></p>
         <% end %>
     </div>
 <% end %>
