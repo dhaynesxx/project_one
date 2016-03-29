@@ -30,7 +30,7 @@ class LineItemController < ApplicationController
     line = LineItem.find params[:id]
     product = Product.find line.product_id
     change = params[:sign]
-    unless line.quantity == product.inventory - 1 && change.to_i == 1
+    unless line.quantity >= product.inventory && change.to_i == 1
         line.quantity += change.to_i
         line.save
     end
