@@ -35,4 +35,4 @@ o2.line_items << l3
 u3.orders << o1 << o2
 
 b.users << u1 << u2 << u3
-b.products << p1 << p2 << p3
+b.products << p1 << p2 << p3 << p4 << p5 << p6

@@ -28,9 +28,12 @@ class LineItemController < ApplicationController
 
   def change_qty
     line = LineItem.find params[:id]
+    product = Product.find line.product_id
     change = params[:sign]
-    line.quantity += change.to_i
-    line.save
+    unless line.quantity == product.inventory - 1 && change.to_i == 1
+        line.quantity += change.to_i
+        line.save
+    end
     if line.quantity == 0
         line.destroy
     end
