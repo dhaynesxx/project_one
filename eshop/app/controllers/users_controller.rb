@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  email           :text
+#  password_digest :text
+#  admin           :boolean          default(FALSE)
+#  master          :boolean          default(FALSE)
+#  name            :text
+#  phone           :text
+#  birthday        :date
+#  reward_level    :integer
+#  business_id     :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class UsersController < ApplicationController
   before_action :authorise, :only => [:index]
 
@@ -35,7 +53,7 @@ end
 
 private
 def user_params
-  params.require(:user).permit(:email, :password, :password_confirmation, :image)
+  params.require(:user).permit(:email, :password, :password_confirmation, :image, :business_id)
 end
 
 def authorise

@@ -1,0 +1,14 @@
+<h1>Finalise Orders</h1>
+
+<% @orders.each do |order| %>
+    ID: <%= order.id %> |
+    Date: <%= order.payment_date %> |
+    <% user = User.find order.user_id  %>
+    Name: <%= user.name %> |
+    Shipping Identification: <%= order.shipping_id %> |
+    <%= form_for(order) do |f| %>
+        <%= f.hidden_field :finalised_date, :value => DateTime.now %>
+        <%= f.submit "Mark as Finalised" %>
+    <% end %>
+    <br>
+<% end %>

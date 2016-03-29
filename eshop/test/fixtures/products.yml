@@ -8,9 +8,9 @@
 #  unit_cost_price :float
 #  description     :text
 #  price_regular   :float
-#  tax_applies     :boolean          default("true")
+#  tax_applies     :boolean          default(TRUE)
 #  price_sale      :float
-#  on_sale         :boolean          default("false")
+#  on_sale         :boolean          default(FALSE)
 #  business_id     :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null

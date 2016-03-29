@@ -17,6 +17,6 @@
 
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, :required => true %>
-
+    <%= f.hidden_field :business_id, :value => Business.first.id %>
     <%= f.submit "Signup" %>
 <% end %>

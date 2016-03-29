@@ -1,0 +1,38 @@
+<h1>Edit Business</h1>
+
+<%= form_for @business do |f| %>
+
+  <fieldset>
+    <%= f.label :company_name %>
+    <%= f.text_field :company_name %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :trading_name %>
+    <%= f.text_field :trading_name %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :abn %>
+    <%= f.text_field :abn %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :logo %>
+    <%= f.text_field :logo %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+  </fieldset>
+  <fieldset>
+    <%= f.label :tax_rate %>
+    <%= f.text_field :tax_rate %>
+  </fieldset>
+  <fieldset>
+    <%= f.submit %>
+  </fieldset>
+
+
+<% end %>

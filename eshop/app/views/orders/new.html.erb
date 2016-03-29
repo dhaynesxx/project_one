@@ -1,10 +1,5 @@
 <% order_status(@order.id) %>
 <h1>Order</h1>
-<p>Date: <%= @order.purchase_date %></p>
-<p>Invoice Number: <%= @order.invoice_number %></p>
-<br>
-<p>Name: <%= @customer.name %></p>
-<p>Delivery Address: <%= @order.delivery_address %></p>
 
 <ul>
 <% @purchased_items.each do |item| %>
@@ -21,12 +16,12 @@
           <p>includes GST: <%= number_to_currency(@order.total_tax) %></p>
       </li>
 </ul>
-<p>Order Status: <%= @order.order_status %></p>
-<p>Purchase Date: <%= @order.purchase_date %></p>
-<p>Payment Date: <%= @order.payment_date %></p>
-<p>Shipped Date: <%= @order.shipped_date %></p>
-<p>Finalised Date: <%= @order.finalised_date %></p>
 
-<% if @current_user.admin? %>
-      <%= link_to(button_tag("Update Status"), edit_order_path(@order.id) ) %>
+<%= form_for(@order) do |f| %>
+      <%= f.label :delivery_address %>
+      <%= f.text_field :delivery_address %>
+      <br>
+      <%= f.hidden_field :payment_date, :value => DateTime.now  %>
+      <%= f.hidden_field :invoice_number, :value => 'INV' + @order.id.to_s.rjust(5, '0') %>
+      <%= f.submit "Submit", :type => :image, :src => '/assets/PayPal.gif' %>
 <% end %>

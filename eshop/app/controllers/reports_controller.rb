@@ -27,6 +27,14 @@ def profit
   @orders = Order.all
 end
 
+def shipping
+  @orders = Order.where(:shipped_date => nil).where.not(:payment_date => nil)
+end
+
+def finalise
+  @orders = Order.where(:finalised_date => nil).where.not(:shipped_date => nil)
+end
+
 private
 
 def authorise

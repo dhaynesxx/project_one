@@ -28,13 +28,8 @@
   <%= f.label :on_sale %>
   <%= f.check_box :on_sale %>
 </fieldset>
-<% if @current_user.master? %>
-  <fieldset>
-    <%= f.label :business_id %>
-    <%= f.select :business_id, Business.pluck(:trading_name, :id) %>
-  </fieldset>
-<% end %>
 <fieldset>
+  <%= f.hidden_field :business_id, :value => Business.first.id %>
   <%= f.submit %>
 </fieldset>
 

@@ -1,0 +1,25 @@
+<h1>Orders to be shipped</h1>
+
+<% @orders.each do |order| %>
+    ID: <%= order.id %> |
+    Date: <%= order.payment_date %> |
+    <% user = User.find order.user_id  %>
+    Name: <%= user.name %> |
+    Delivery Address: <%= order.delivery_address %>
+    <br>
+    <% lines = LineItem.where(:order_id => order.id) %>
+    <% lines.each do |line| %>
+        <% product = Product.find line.product_id %>
+        Product Name: <%= product.name %> |
+        Quantity: <%= line.quantity %>
+        <br>
+    <% end %>
+    <br>
+    <%= form_for(order) do |f| %>
+        <%= f.label :shipping_identification %>
+        <%= f.text_field :shipping_id %>
+        <%= f.hidden_field :shipped_date, :value => DateTime.now %>
+        <%= f.submit "Mark as Shipped" %>
+    <% end %>
+    <br>
+<% end %>

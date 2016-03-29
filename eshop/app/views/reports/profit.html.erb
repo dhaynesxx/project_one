@@ -23,8 +23,10 @@
     <p>Total Cost: <%= number_to_currency(total_cost) %></p>
     <p>Total Tax: <%= number_to_currency(total_tax) %></p>
     <% gross_profit = total_revenue - total_tax - total_cost %>
-    <p>Gross Profit: <%= number_to_currency(gross_profit) %></p>
-    <p>Gross Profit %: <%= number_to_percentage(gross_profit / (total_revenue - total_tax) * 100) %></p>
+    <% unless (total_revenue = 0) %>
+        <p>Gross Profit: <%= number_to_currency(gross_profit) %></p>
+        <p>Gross Profit %: <%= number_to_percentage(gross_profit / (total_revenue - total_tax) * 100) %></p>
+    <% end %>
     <br>
     <% @grand_total_revenue += total_revenue %>
     <% @grand_total_tax += total_tax %>

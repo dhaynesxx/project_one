@@ -1,0 +1,11 @@
+<h1><%= @business.trading_name %></h1>
+
+<p>Company Name: <%= @business.company_name %></p>
+<p>Trading Name: <%= @business.trading_name %></p>
+<p>ABN: <%= @business.abn %></p>
+<p>Logo: <%= @business.logo %></p>
+<p>Email: <%= @business.email %></p>
+<p>Phone: <%= @business.phone %></p>
+<p>Tax Rate: <%= @business.tax_rate %></p>
+
+<%= link_to(button_tag("Edit Business Details"), edit_business_path ) %>

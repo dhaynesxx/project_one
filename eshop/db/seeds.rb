@@ -1,5 +1,5 @@
 Business.destroy_all
-b = Business.create :company_name => 'Test Pty Ltd', :trading_name => "The Shop", :tax_rate => "10%"
+b = Business.create :company_name => 'Test Pty Ltd', :trading_name => "The Shop", :tax_rate => "10%", :email => 'contactus@theshop.com.au', :phone => '+61 2 9808 1234', :logo => '/assets/the_shop_logo.png'
 
 User.destroy_all
 u1 = User.create :email => 'master@ga.co', :password => 'chicken', :password_confirmation => 'chicken', :admin => true, :master => true, :name => 'Dave'
@@ -17,22 +17,10 @@ p6 = Product.create :name => "Sprite", :image => 'http://pngimg.com/upload/sprit
 
 
 LineItem.destroy_all
-l1 = LineItem.create :quantity => 3, :unit_price => 5.0, :unit_tax => 0.45, :unit_cost => 2.0
-l2 = LineItem.create :quantity => 2, :unit_price => 15.0, :unit_tax => 1.36, :unit_cost => 5.0
-l3 = LineItem.create :quantity => 6, :unit_price => 2.0, :unit_tax => 0, :unit_cost => 1.0
 
-p1.line_items << l1
-p2.line_items << l2
-p3.line_items << l3
 
 Order.destroy_all
-o1 = Order.create :invoice_number => 'INV001', :total_revenue => 45.0, :total_tax =>4.07, :total_cost => 16.0, :purchase_date => DateTime.now
-o2 = Order.create :invoice_number => 'INV002', :total_revenue => 12.0, :total_tax =>1.08, :total_cost => 6.0, :purchase_date => DateTime.now
 
-o1.line_items << l1 << l2
-o2.line_items << l3
-
-u3.orders << o1 << o2
 
 b.users << u1 << u2 << u3
 b.products << p1 << p2 << p3 << p4 << p5 << p6

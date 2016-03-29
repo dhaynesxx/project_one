@@ -5,8 +5,8 @@
 #  id              :integer          not null, primary key
 #  email           :text
 #  password_digest :text
-#  admin           :boolean          default("false")
-#  master          :boolean          default("false")
+#  admin           :boolean          default(FALSE)
+#  master          :boolean          default(FALSE)
 #  name            :text
 #  phone           :text
 #  birthday        :date

@@ -10,6 +10,7 @@
   <header>
     <nav>
         <%= link_to "Home", root_path %>
+        <%= link_to "Contact Us", pages_contact_path %>
         <% if @current_user.present? %>
             <%= link_to "Edit profile", edit_user_path(@current_user) %>
             <%= link_to "Logout #{ @current_user.email}", login_path, :method => :delete %>
@@ -31,14 +32,19 @@
         <%= link_to "All Products", products_path %>
         <% if @current_user.present? %>
           <% if @current_user.admin? %>
-            <%= link_to "New Product", new_product_path %>
+            <%= link_to "New Product", new_product_path %> |
             <%= link_to "All Users", users_path %>
             <%= link_to "All Orders", orders_path %>
-            <%= link_to "Inventory", reports_inventory_path %>
             <%= link_to "Sales", reports_sales_path %>
-            <%= link_to "Profit", reports_profit_path %>
+            <%= link_to "Profit", reports_profit_path %> |
+            <%= link_to "Inventory", reports_inventory_path %>
+            <%= link_to "Shipping", reports_shipping_path %>
+            <%= link_to "Finalise", reports_finalise_path %>
           <% else %>
             <%= link_to "Previous Orders", orders_path %>
+          <% end %>
+          <% if @current_user.master? %>
+            | <%= link_to "Business", business_path(@current_user.business_id) %>
           <% end %>
         <% end %>
       </div>
