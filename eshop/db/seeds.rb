@@ -8,7 +8,7 @@ u3 = User.create :email => 'user1@ga.co', :password => 'chicken', :password_conf
 u4 = User.create :email => 'user2@ga.co', :password => 'chicken', :password_confirmation => 'chicken', :admin => false, :master => false, :name => 'Jane'
 
 Product.destroy_all
-p1 = Product.create :name => "Cadbury Bar", :desription => "Its chocolate", :price_regular 4, :price_sale 3, :image => "http://res.cloudinary.com/dhaynesxx/image/upload/v1459407550/rxr5x6ubvvyw57dvhfys.png", :tags => "chocolate"
+p1 = Product.create :name => "Cadbury Bar", :desription => "Its chocolate", :price_regular => 4.0, :price_sale => 3.0, :image => "http://res.cloudinary.com/dhaynesxx/image/upload/v1459407550/rxr5x6ubvvyw57dvhfys.png", :tags => "chocolate"
 p2
 p3
 p4
@@ -20,3 +20,4 @@ Order.destroy_all
 
 
 b.users << u1 << u2 << u3 << u4
+b.product << p1
