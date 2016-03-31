@@ -2,10 +2,11 @@
 <h1><%= @product.name %></h1>
 
 <%= image_tag(@product.image, :class => "feature") %>
-<% if @current_user.present? && @product.inventory != 0 %>
+<% if @product.active.blank? %>
+    <p><%= button_tag "Inactive" %></p>
+<% elsif @current_user.present? && @product.inventory != 0 %>
     <p><%= link_to (button_tag "Add to Cart"), cart_add_path(:id => @product.id, :page => 'show') %></p>
-<% end %>
-<% if @product.inventory == 0 %>
+<% elsif @product.inventory == 0 %>
     <p><%= button_tag "Out of Stock" %></p>
 <% end %>
 <% unless @product.on_sale? %>

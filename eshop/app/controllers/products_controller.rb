@@ -23,6 +23,8 @@ class ProductsController < ApplicationController
   def index
     if params[:search]
       @products = Product.search(params[:search]).where(:active => true).sort
+    elsif @current_user.present? && @current_user.admin?
+      @products = Product.all
     else
       @products = Product.where(:active => true).sort
     end

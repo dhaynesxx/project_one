@@ -19,7 +19,9 @@
                     <p class='product-text'><%= number_to_currency(product.price_sale) %></p>
                 <% end %>
                 <% if @current_user.present?%>
-                    <% if product.inventory != 0  %>
+                    <% if product.active.blank? %>
+                        <p><%= button_tag "Inactive" %></p>
+                    <% elsif product.inventory != 0  %>
                         <p><%= link_to (button_tag "Add to Cart"), cart_add_path(:id => product.id, :page => 'index') %></p>
                     <% elsif product.inventory == 0 %>
                         <p><%= button_tag "Out of Stock" %></p>
