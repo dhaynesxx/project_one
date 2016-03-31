@@ -45,7 +45,9 @@ class ProductsController < ApplicationController
   end
 
   def update
-    req = Cloudinary::Uploader.upload( params[:product][:image])
+    if params[:product][:image].present?
+      req = Cloudinary::Uploader.upload( params[:product][:image])
+    end
     product = Product.find params[:id]
     product.image["req"]
     product.update product_params

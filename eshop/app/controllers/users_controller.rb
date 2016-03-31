@@ -53,7 +53,7 @@ end
 
 private
 def user_params
-  params.require(:user).permit(:email, :password, :password_confirmation, :image, :business_id)
+  params.require(:user).permit(:email, :password, :password_confirmation, :image, :business_id, :name, :phone, :birthday, :reward_level, :admin, :master)
 end
 
 def authorise

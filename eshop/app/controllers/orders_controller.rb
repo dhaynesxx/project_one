@@ -75,7 +75,7 @@ class OrdersController < ApplicationController
     order.update order_params
     session[:order_id] = order.id
     if order.finalised_date.present?
-        redirect_to reports_finalised_path
+        redirect_to reports_finalise_path
     elsif order.shipped_date.present?
         redirect_to reports_shipping_path
     elsif order.payment_date.nil?

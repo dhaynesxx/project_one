@@ -1,3 +1,4 @@
+<div class="admin">
 <h1>Shopping Cart</h1>
 <% @total_price = 0 %>
 <% @total_tax = 0 %>
@@ -7,7 +8,7 @@
     <% @total_price += (item.unit_price * item.quantity) %>
     <% @total_tax += (item.unit_tax * item.quantity) %>
     <li>
-      <%= image_tag product.image, :class => 'thumb' %>
+      <%= image_tag product.image, :class => 'index-image' %>
       <p><%= product.name %></p>
       <p>Quantity: <%= item.quantity %>
         <%= link_to (button_tag "-"), update_item_path(:id => item.id, :sign => -1), :method => :put %>
@@ -24,3 +25,4 @@
       <p><%= link_to (button_tag "Purchase Items"), new_order_path %></p>
     </li>
 </ul>
+</div>

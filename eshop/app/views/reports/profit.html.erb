@@ -1,3 +1,4 @@
+<div class="admin">
 <h1>Profit Report</h1>
 
 <div class="row">
@@ -6,7 +7,7 @@
 <div class="col-md-2"><h5>Total Tax: <%= number_to_currency(@grand_total_tax) %></h4></div>
 <div class="col-md-2"><h5>Total Cost: <%= number_to_currency(@grand_total_cost) %></h4></div>
 <div class="col-md-2"><h5>Gross Profit: <%= number_to_currency(@gross_profit) %></h4></div>
-<div class="col-md-2"><h5>GP%: <%= number_to_percentage(@gross_profit / (@grand_total_revenue - @grand_total_tax) * 100) %></h4></div>
+<div class="col-md-2"><h5>GP%: <%= number_to_percentage(@gross_profit_percentage * 100) %></h4></div>
 <div class="col-md-1"></div>
 </div>
 
@@ -40,3 +41,4 @@
     </div>
     <br>
 <% end %>
+</div>

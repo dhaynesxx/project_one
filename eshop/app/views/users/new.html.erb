@@ -1,3 +1,4 @@
+<div class="admin">
 <h1>Sign up</h1>
 
 <% if @user.errors.any? %>
@@ -20,3 +21,4 @@
     <%= f.hidden_field :business_id, :value => Business.first.id %>
     <%= f.submit "Signup" %>
 <% end %>
+</div>

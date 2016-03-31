@@ -1,6 +1,7 @@
+<div class="admin">
 <h1>Purchase Stock</h1>
 
-<%= image_tag @product.image %>
+<%= image_tag @product.image, :class => "feature" %>
 <p>Name: <%= @product.name %></p>
 <%= form_for(@product, url: add_stock_path) do |f| %>
     <%= f.label :inventory %>
@@ -11,3 +12,4 @@
     <br>
     <%= f.submit %>
 <% end %>
+</div>

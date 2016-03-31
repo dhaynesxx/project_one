@@ -1,3 +1,4 @@
+<div class="admin">
 <% order_status(@order.id) %>
 <h1>Order</h1>
 
@@ -11,7 +12,7 @@
 <% @purchased_items.each do |item| %>
       <% product = Product.find item.product_id %>
       <li>
-        <%= link_to(image_tag(product.image, :class => 'thumb'), product_path(product.id)) %>
+        <%= link_to(image_tag(product.image, :class => 'index-image'), product_path(product.id)) %>
         <p><%= product.name %></p>
         <p>Quantity: <%= item.quantity %></p>
         <p>Total Price: <%= number_to_currency(item.unit_price * item.quantity)  %></p>
@@ -31,3 +32,4 @@
 <% if @current_user.admin? %>
       <%= link_to(button_tag("Update Status"), edit_order_path(@order.id) ) %>
 <% end %>
+</div>

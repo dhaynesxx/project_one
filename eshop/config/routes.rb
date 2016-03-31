@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root :to => 'pages#home'
+  root :to => 'products#index'
   get '/pages/contact' => 'pages#contact'
 
   resources :users, :except => [:destroy]

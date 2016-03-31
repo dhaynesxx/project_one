@@ -1,45 +1,85 @@
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans);
+
 html, body {
+  font-family: 'Josefin Sans', sans-serif;
   height: 100%;
 }
 
 body {
   text-align: center;
+  background-image: url('candy.jpg');
+  background-size: cover;
 }
 
 header {
-  width: 100%
+  width: 100%;
 }
 
 
-nav {
+nav, {
   width: 100%;
-  border: 1px solid black;
-  height: 20px;
+  height: 30px;
   line-height: 20px;
   text-align: right;
+  background-color: black;
+  color: white;
+}
 
+.admin {
+  background-color: rgba(110,80,150,0.8);
+  min-height: 200px;
+  color: aquamarine;
+  padding: 20px 0;
+  margin-top: 50px;
+}
+
+input {
+  background-color: darkgrey;
+}
+
+.login {
+  background-color: black;
+}
+
+.nav-link, .nav-link:visited {
+  color: white;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.search-nav-wrapper {
+  vertical-align: middle;
+  line-height: 100%;
 }
 
 .search-nav {
   width: 100%;
   height: 100%;
-  border: 1px solid black;
-
 }
 
 .main-menu-wrapper {
   width: 100%;
-  border: 1px solid black;
-  height: 50px;
-  line-height: 50px;
+  min-height: 55px;
+  line-height: 55px;
 }
 
 .main-menu-list {
 
 }
 
+.menu-button {
+  width: 115%;
+  color: #0C00FF;
+  font-size: 20px;
+  background-color: #FAA61A;
+}
+
+h2, .product-text, .product-text:visited  {
+  color: #FFDC00;
+}
+
 #business-logo {
-  height: 100%
+  height: 100px;
 }
 
 #product-search-field {
@@ -51,27 +91,28 @@ nav {
 }
 
 #product-search-button {
-  height: 90%;
+  height: 100%;
   width: 100%;
-  background-color: blue;
+  background-color: #4DB848;
   color: white;
 }
 
 #cart-button {
-  height: 90%;
+  height: 100%;
   width: 100%;
-  background-color: red;
+  background-color: #F287B7;
 }
 
 .main-area {
   min-height: 100%;
-  border: 1px solid black;
 }
 
 .product-index-container {
   border: 1px solid black;
   width: 100%;
   margin: 5px;
+  background-color: rgba(0,174,239,0.9);
+  border-radius: 25px;
 }
 
 .image-add-field {
@@ -80,6 +121,11 @@ nav {
 
 .thumb {
   height: 200px;
+}
+
+.index-image {
+  height: 200px;
+  max-width: 100%;
 }
 
 .report-image {

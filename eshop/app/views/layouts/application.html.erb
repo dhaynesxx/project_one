@@ -10,60 +10,66 @@
   <header>
 
     <nav>
-        <%= link_to "Home", root_path %>
-        <%= link_to "Contact Us", pages_contact_path %>
+        <%= link_to"Home", root_path, :class => "nav-link" %>
+        <%= link_to "Contact Us", pages_contact_path, :class => "nav-link" %>
         <% if @current_user.present? %>
-            <%= link_to "Edit profile", edit_user_path(@current_user) %>
-            <%= link_to "Logout #{ @current_user.email}", login_path, :method => :delete %>
+            <%= link_to "Edit profile", edit_user_path(@current_user), :class => "nav-link" %>
+            <%= link_to "Logout #{ @current_user.email}", login_path, :method => :delete, :class => "nav-link" %>
         <% else %>
-            <%= link_to "Signup", signup_path %>
-            <%= link_to "Login", login_path  %>
+            <%= link_to "Signup", signup_path, :class => "nav-link" %>
+            <%= link_to "Login", login_path, :class => "nav-link"  %>
         <% end %>
     </nav>
 
     <div class="container-fluid search-nav">
-      <div class='row'>
+      <div class='row search-nav-wrapper'>
         <%= form_tag(products_path, :method => "get", id: "search-form") do %>
-            <div class="col-sm-3" :id="business-logo"><%= Business.first.logo %></div>
-            <div class="col-sm-7">
+            <div class="col-lg-3 col-sm-3"><%= link_to(image_tag(Business.first.logo, :id => "business-logo"), root_path) %></div>
+            <div class="col-lg-7 col-sm-9">
                 <div class="row">
-                    <div class="col-sm-8"><%= text_field_tag :search, params[:search], placeholder: "Search Products", id: "product-search-field" %></div>
-                    <div class="col-sm-4"><%= submit_tag "Search", id: "product-search-button" %></div>
+                    <div class="col-lg-8 col-sm-8"><%= text_field_tag :search, params[:search], placeholder: "Search Products", :class => "form-control", id: "product-search-field" %></div>
+                    <div class="col-lg-4 col-sm-4"><%= submit_tag "Search", :class => "btn btn-default", id: "product-search-button" %></div>
                 </div>
             </div>
         <% end %>
-        <div class="col-sm-2"><%= link_to(button_tag('Shopping Cart', :id => 'cart-button'), cart_path) %></div>
+        <div class="col-lg-2 col-sm-4"><%= link_to(button_tag('Shopping Cart', :class => "btn btn-default", :id => 'cart-button'), cart_path) %></div>
       </div>
     </div>
 
     <div class='main-menu-wrapper'>
-      <div class='main-menu-list'>
+      <div class='main-menu-list row'>
         <% if @current_user.nil? %>
-            <%= link_to "All Products", products_path %>
-            <%= link_to "Previous Orders", orders_path %>
-        <% elsif @current_user.present? && @current_user.admin.nil? %>
-            <%= link_to "All Products", products_path %>
-            <%= link_to "Previous Orders", orders_path %>
+            <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("All Products", :class => "menu-button"), products_path) %></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("Retro Candy", :class => "menu-button"), products_path(:search => "retro")) %></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("Chocolate", :class => "menu-button"), products_path(:search => "chocolate")) %></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("Gum", :class => "menu-button"), products_path(:search => "gum")) %></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("Lollipops", :class => "menu-button"), products_path(:search => "lollipop")) %></div>
+            <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"></div>
+        <% elsif @current_user.present? && @current_user.admin.blank? %></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("All Products", :class => "menu-button"), products_path) %></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("Retro Candy", :class => "menu-button"), products_path(:search => "retro")) %></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("Chocolate", :class => "menu-button"), products_path(:search => "chocolate")) %></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("Gum", :class => "menu-button"), products_path(:search => "gum")) %></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("Lollipops", :class => "menu-button"), products_path(:search => "lollipop")) %></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("Previous Orders", :class => "menu-button"), orders_path) %></div>
         <% elsif @current_user.admin? %>
-        <div class="btn-toolbar" role="toolbar">
-            <%= link_to "All Products", products_path %>
-            <%= link_to "New Product", new_product_path %> |
-            <%= link_to "All Users", users_path %>
-            <%= link_to "All Orders", orders_path %>
-            <%= link_to "Sales", reports_sales_path %>
-            <%= link_to "Profit", reports_profit_path %> |
-            <%= link_to "Inventory", reports_inventory_path %>
-            <%= link_to "Shipping", reports_shipping_path %>
-            <%= link_to "Finalise", reports_finalise_path %>
-          <% else %>
-
-          <% end %>
-          <% if @current_user.master? %>
-            | <%= link_to "Business", business_path(@current_user.business_id) %>
-          <% end %>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("All Products", :class => "menu-button"), products_path) %></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("Add Product", :class => "menu-button"), new_product_path) %></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("All Users", :class => "menu-button"), users_path) %></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("All Orders", :class => "menu-button"), orders_path) %></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("Sales", :class => "menu-button"), reports_sales_path) %></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("Profit", :class => "menu-button"), reports_profit_path) %></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("Inventory", :class => "menu-button"), reports_inventory_path) %></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("Shipping", :class => "menu-button"), reports_shipping_path) %></div>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("Finalise", :class => "menu-button"), reports_finalise_path) %></div>
+        <% end %>
+        <% if @current_user.present? && @current_user.master? %>
+            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("Business", :class => "menu-button"), business_path(@current_user.business_id)) %></div>
         <% end %>
       </div>
     </div>
+
   </header>
 
   <div class='main-area'>
