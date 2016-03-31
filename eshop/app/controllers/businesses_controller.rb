@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: businesses
+#
+#  id           :integer          not null, primary key
+#  company_name :text
+#  trading_name :text
+#  abn          :text
+#  logo         :text
+#  email        :text
+#  phone        :text
+#  tax_rate     :float
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
 class BusinessesController < ApplicationController
   before_action :authorise
 

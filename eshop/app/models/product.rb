@@ -15,14 +15,17 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  image           :text
+#  tags            :text
+#  active          :boolean          default(TRUE)
 #
 
 class Product < ActiveRecord::Base
+
   belongs_to :business
   has_many :line_items
 
 def self.search(search)
-  where("name ILIKE ? or description ILIKE ?", "%#{search}%", "%#{search}%")
+  where("name ILIKE ? or description ILIKE ? or tags ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%" )
 end
 
 end

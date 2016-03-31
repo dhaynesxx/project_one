@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dhaynesxx
+  api_key: '994789586479747'
+  api_secret: B4VqP5pM6jtTTVtAw0CUF4264R4
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: dhaynesxx
+  api_key: '994789586479747'
+  api_secret: B4VqP5pM6jtTTVtAw0CUF4264R4
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: dhaynesxx
+  api_key: '994789586479747'
+  api_secret: B4VqP5pM6jtTTVtAw0CUF4264R4
+  enhance_image_tag: true
+  static_image_support: false

@@ -21,7 +21,8 @@
       <%= f.label :delivery_address %>
       <%= f.text_field :delivery_address %>
       <br>
-      <%= f.hidden_field :payment_date, :value => DateTime.now  %>
-      <%= f.hidden_field :invoice_number, :value => 'INV' + @order.id.to_s.rjust(5, '0') %>
-      <%= f.submit "Submit", :type => :image, :src => '/assets/PayPal.gif' %>
+      <br>
+      <% inv = 'INV' + @order.id.to_s.rjust(5, '0') %>
+      <%= f.hidden_field :invoice_number, :value => inv %>
+      <%= f.submit "Submit" %>
 <% end %>

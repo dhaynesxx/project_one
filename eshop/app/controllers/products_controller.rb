@@ -15,6 +15,8 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  image           :text
+#  tags            :text
+#  active          :boolean          default(TRUE)
 #
 
 class ProductsController < ApplicationController
@@ -31,8 +33,10 @@ class ProductsController < ApplicationController
   end
 
   def create
-    product = Product.find params[:id]
-    product.create product_params
+    req = Cloudinary::Uploader.upload( params[:product][:image])
+    product = Product.create product_params
+    product.image = req["url"]
+    product.save
     redirect_to product
   end
 
@@ -41,7 +45,9 @@ class ProductsController < ApplicationController
   end
 
   def update
+    req = Cloudinary::Uploader.upload( params[:product][:image])
     product = Product.find params[:id]
+    product.image["req"]
     product.update product_params
     redirect_to product
   end
@@ -70,6 +76,6 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:name, :image, :inventory, :unit_cost_price, :description, :price_regular, :tax_applies, :price_sale, :on_sale, :business_id, :search)
+    params.require(:product).permit(:name, :inventory, :unit_cost_price, :description, :price_regular, :tax_applies, :price_sale, :on_sale, :business_id, :search, :tags)
   end
 end

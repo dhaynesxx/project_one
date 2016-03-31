@@ -1,20 +1,16 @@
-<%= form_for @product do |f| %>
+<%= form_for @product, html: { multipart: true } do |f| %>
 
 <fieldset>
   <%= f.label :name %>
   <%= f.text_field :name %>
 </fieldset>
 <fieldset>
+  <%= f.label :tags %>
+  <%= f.text_field :tags %>
+</fieldset>
+<fieldset>
   <%= f.label :desciption %>
   <%= f.text_field :description %>
-</fieldset>
-<fieldset>
-  <%= f.label :image %>
-  <%= f.url_field :image %>
-</fieldset>
-<fieldset>
-  <%= f.label :tax_applies %>
-  <%= f.check_box :tax_applies %>
 </fieldset>
 <fieldset>
   <%= f.label :price_regular %>
@@ -24,12 +20,26 @@
   <%= f.label :price_sale %>
   <%= f.text_field :price_sale %>
 </fieldset>
+<fieldset class="image-add-field">
+  <%= f.label :image %>
+  <%= f.file_field :image %>
+</fieldset>
 <fieldset>
   <%= f.label :on_sale %>
   <%= f.check_box :on_sale %>
 </fieldset>
 <fieldset>
+  <%= f.label :tax_applies %>
+  <%= f.check_box :tax_applies %>
+</fieldset>
+<fieldset>
+  <%= f.label :active %>
+  <%= f.check_box :active %>
+</fieldset>
+<fieldset>
   <%= f.hidden_field :business_id, :value => Business.first.id %>
+  <%= f.hidden_field :inventory, :value => 0 %>
+  <%= f.hidden_field :unit_cost_price, :value => 0 %>
   <%= f.submit %>
 </fieldset>
 

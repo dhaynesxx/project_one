@@ -1,17 +1,17 @@
 <h1>Orders</h1>
 
-<% @orders.each do |order| %>
+<% @orders.reverse_order.each do |order| %>
     <% order_status(order.id) %>
     <% if order.user_id.present? %>
         <% user = User.find order.user_id %>
     <% end %>
-    <div class='order-index-line'>
-        Order id: <%= order.id %> |
-        Invoice_number: <%= order.invoice_number %> |
-        Total Price: <%= number_to_currency(order.total_revenue) %> |
-        Total Tax: <%= number_to_currency(order.total_tax) %> |
-        User: <%= user.name %> |
-        Order Status: <%= order.order_status %>
-        <%= link_to "View", order_path(order.id) %>
+    <hr>
+    <div class='order-index-line row'>
+        <div class="col-sm-2">Invoice: <%= order.invoice_number %></div>
+        <div class="col-sm-2">Date: <%= order.purchase_date %></div>
+        <div class="col-sm-2">User: <%= user.name %></div>
+        <div class="col-sm-2">Price: <%= number_to_currency(order.total_revenue) %></div>
+        <div class="col-sm-3">Order Status: <%= order.order_status %></div>
+        <div class="col-sm-1"><%= link_to(button_tag("View"), order_path(order.id)) %></div>
     </div>
 <% end %>

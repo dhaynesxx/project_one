@@ -1,9 +1,13 @@
 <h1>Sales Report</h1>
-
-<% @grand_total = 0 %>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-4"><h4>Total Unit Sales: <%= @grand_total_units %></h4></div>
+    <div class="col-md-4"><h4>Total Revenue: <%= number_to_currency(@grand_total) %></h4></div>
+    <div class="col-md-2"></div>
+</div>
 <% @products.each do |product| %>
-    <%= image_tag product.image, :class => 'thumb'  %>
-    <p>Name: <%= product.name %></p>
+<hr>
+<div class="row">
     <% total_revenue = 0 %>
     <% total_quantity = 0 %>
     <% lines = @line_items.where(:product_id => product.id) %>
@@ -11,9 +15,12 @@
         <% total_revenue += item.unit_price * item.quantity %>
         <% total_quantity += item.quantity %>
     <% end %>
-    <p>Total Sales (units): <%= total_quantity %></p>
-    <p>Total Sales ($): <%= number_to_currency(total_revenue) %></p>
+    <div class="col-md-2 "></div>
+    <div class="col-md-2 report"><%= image_tag product.image, :class => 'report-image'  %></div>
+    <div class="col-md-2 report"><p>Name: <%= product.name %></p></div>
+    <div class="col-md-2 report"><p>Total Sales (units): <%= total_quantity %></p></div>
+    <div class="col-md-2 report"><p>Total Sales: <%= number_to_currency(total_revenue) %></p></div>
+    <div class="col-md-2"></div>
     <br>
-    <% @grand_total += total_revenue %>
+</div>
 <% end %>
-<p>Grand Total Sales ($): <%= number_to_currency(@grand_total) %></p>

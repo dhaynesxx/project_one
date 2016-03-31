@@ -73,8 +73,13 @@ class OrdersController < ApplicationController
   def update
     order = Order.find params[:id]
     order.update order_params
-    if :shipped_date.present?
+    session[:order_id] = order.id
+    if order.finalised_date.present?
+        redirect_to reports_finalised_path
+    elsif order.shipped_date.present?
         redirect_to reports_shipping_path
+    elsif order.payment_date.nil?
+        redirect_to new_charge_path
     else
         redirect_to order_path(order.id)
     end
@@ -86,7 +91,7 @@ def authorise
 end
 
 def order_params
-  params.require(:order).permit(:purchase_date, :payment_date, :shipped_date, :finalised_date, :delivery_address, :shipping_id)
+  params.require(:order).permit(:purchase_date, :payment_date, :shipped_date, :finalised_date, :delivery_address, :shipping_id, :invoice_number)
 end
 
 end

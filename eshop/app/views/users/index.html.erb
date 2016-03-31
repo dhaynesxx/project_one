@@ -1,16 +1,19 @@
 <h1>All Users</h1>
 
 <% @users.each do |user| %>
-    Name: <%= user.name %> |
-    Email: <%= user.email %> |
-    Phone: <%= user.phone %> |
-    Birthday: <%= user.birthday %> |
-    Reward Level: <%= user.reward_level %> |
     <% total = 0 %>
     <% Order.where(:user_id => user.id).each do |order| %>
         <% total += order.total_revenue %>
     <% end %>
-    Total Sales: <%= number_to_currency(total) %>
-    <%= link_to "Orders", orders_path(:id => user.id) %>
+    <hr>
+    <div class="row">
+        <div class="col-sm-2"><%= user.name %></div>
+        <div class="col-sm-2">Email: <%= user.email %></div>
+        <div class="col-sm-1">Phone: <%= user.phone %></div>
+        <div class="col-sm-1">Birthday: <%= user.birthday %></div>
+        <div class="col-sm-2">Reward Level: <%= user.reward_level %></div>
+        <div class="col-sm-2">Total Sales: <%= number_to_currency(total) %></div>
+        <div class="col-sm-2"><%= link_to(button_tag("Orders"), orders_path(:id => user.id)) %></div>
+    </div>
     <br>
 <% end %>

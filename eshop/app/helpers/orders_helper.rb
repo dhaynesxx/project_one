@@ -28,9 +28,9 @@ module OrdersHelper
       if order.finalised_date.present?
             order.order_status = "Order finalised"
       elsif order.shipped_date.present?
-            order.order_status = "Product Shipped, awaiting confirmation"
+            order.order_status = "awaiting confirmation"
       elsif order.payment_date.present?
-            order.order_status = "Payment made, awaiting shipment"
+            order.order_status = "Awaiting shipment"
       else
             order.order_status = "Awaiting payment"
       end

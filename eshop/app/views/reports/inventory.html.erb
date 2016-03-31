@@ -1,11 +1,15 @@
 <h1>Inventory</h1>
 <% i = 0 %>
 <% @products.each do |product| %>
-    Product ID: <%= product.id %> |
-    Name: <%= product.name %> |
-    Total stock on hand: <%= product.inventory + @product_inventory_awaiting_delivery[i] %> |
-    Stock awaiting shipping: <%= @product_inventory_awaiting_delivery[i] %> |
-    Stock available for sale: <%= product.inventory %>
+<div class="row">
+    <div class="col-lg-2 col-sm-0"></div>
+    <div class="col-lg-2 col-sm-3">Name: <%= product.name %></div>
+    <div class="col-lg-2 col-sm-3">Total stock on hand: <%= product.inventory + @product_inventory_awaiting_delivery[i] %></div>
+    <div class="col-lg-2 col-sm-3">Stock awaiting shipping: <%= @product_inventory_awaiting_delivery[i] %></div>
+    <div class="col-lg-2 col-sm-3">Stock available for sale: <%= product.inventory %></div>
     <% i += 1 %>
+    <div class="col-lg-2 col-sm-0"></div>
+    <hr>
     <br>
+    </div>
 <% end %>

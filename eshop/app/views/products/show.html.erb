@@ -1,7 +1,7 @@
 <h1><%= @product.name %></h1>
 
 <%= image_tag(@product.image, :class => "feature") %>
-<% if @current_user.present? && @product.inventory > 0 %>
+<% if @current_user.present? && @product.inventory != 0 %>
     <p><%= link_to (button_tag "Add to Cart"), cart_add_path(:id => @product.id, :page => 'show') %></p>
 <% end %>
 <% if @product.inventory == 0 %>
@@ -19,12 +19,13 @@
 <p>Description: <%= @product.description %></p>
 <% if @current_user.present? %>
     <% if @current_user.admin? %>
+        <p>Tags: <%= @product.tags %></p>
         <p>Stock Available: <%= @product.inventory %></p>
         <p>Cost Price: <%= number_to_currency(@product.unit_cost_price) %></p>
-        <p>Taxed: <%= @product.tax_applies %></p>
         <p>Regular Price: <%= number_to_currency(@product.price_regular) %></p>
         <p>Sale Price: <%= number_to_currency(@product.price_sale) %></p>
         <p>Currently on sale: <%= @product.on_sale %></p>
+        <p>Taxed: <%= @product.tax_applies %></p>
         <%= link_to "Edit Product", edit_product_path %>
         <%= link_to "Add Stock", purchase_stock_path %>
     <% end %>

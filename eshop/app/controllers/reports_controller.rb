@@ -19,12 +19,33 @@ def sales
     @products = Product.all
     @line_items = LineItem.all
     @orders = Order.all
+    @grand_total = 0
+    @grand_total_units = 0
+    @orders.each do |order|
+        @grand_total += order.total_revenue
+        @line_items.each do |item|
+          if item.order_id == order.id
+            @grand_total_units += item.quantity
+          end
+        end
+    end
 end
 
 def profit
   @products = Product.all
   @line_items = LineItem.all
   @orders = Order.all
+  @grand_total_revenue = 0
+  @grand_total_cost = 0
+  @grand_total_tax = 0
+  @gross_profit = 0
+  @orders.each do |order|
+      @grand_total_revenue += order.total_revenue
+      @grand_total_cost += order.total_cost
+      @grand_total_tax += order.total_tax
+      profit = order.total_revenue - order.total_tax - order.total_cost
+      @gross_profit += profit
+  end
 end
 
 def shipping
