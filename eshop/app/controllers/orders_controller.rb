@@ -25,13 +25,14 @@ class OrdersController < ApplicationController
   before_action :authorise
 
   def index
-    unless @current_user.admin?
+    if @current_user.present? && @current_user.admin?
+        @orders = Order.all
+    elsif @current_user.present? && @current_user.admin.blank?
         @orders = Order.where(:user_id => @current_user.id)
-    end
-    if params[:id].present?
+    elsif params[:id].present?
         @orders = Order.where(:user_id => params[:id])
     else
-        @orders = Order.all
+        redirect_to root_path
     end
   end
 

@@ -40,11 +40,11 @@
       <div class='main-menu-list row'>
         <% if @current_user.nil? %>
             <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"></div>
-            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("All Products", :class => "menu-button"), products_path) %></div>
-            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("Retro Candy", :class => "menu-button"), products_path(:search => "retro")) %></div>
-            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("Chocolate", :class => "menu-button"), products_path(:search => "chocolate")) %></div>
-            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("Gum", :class => "menu-button"), products_path(:search => "gum")) %></div>
-            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("Lollipops", :class => "menu-button"), products_path(:search => "lollipop")) %></div>
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6"><%= link_to(button_tag("All Products", :class => "menu-button"), products_path) %></div>
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6"><%= link_to(button_tag("Retro Candy", :class => "menu-button"), products_path(:search => "retro")) %></div>
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6"><%= link_to(button_tag("Chocolate", :class => "menu-button"), products_path(:search => "chocolate")) %></div>
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6"><%= link_to(button_tag("Gum", :class => "menu-button"), products_path(:search => "gum")) %></div>
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-6"><%= link_to(button_tag("Lollipops", :class => "menu-button"), products_path(:search => "lollipop")) %></div>
             <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"></div>
         <% elsif @current_user.present? && @current_user.admin.blank? %></div>
             <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"><%= link_to(button_tag("All Products", :class => "menu-button"), products_path) %></div>

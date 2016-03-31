@@ -1,29 +1,31 @@
 
 
 <div class="row">
-<% @products.each do |product| %>
-    <div class='col-md-3 col-sm-4 col-xs-12'>
-        <div class='product-index-container'>
-        <%= link_to(image_tag(product.image, :class => "index-image"), product) %>
-        <br>
-        <h2><%= link_to product.name, product, :class => "product-text" %></h2>
-        <br>
-        <% unless product.on_sale? %>
-            <h2><%= number_to_currency(product.price_regular) %></h2>
-            <br>
-        <% end %>
-        <% if product.on_sale? %>
-            <p class='product-sale product-text'><%= number_to_currency(product.price_regular) %></p>
-            <p class='product-text'><%= number_to_currency(product.price_sale) %></p>
-        <% end %>
-        <% if @current_user.present?%>
-            <% if product.inventory != 0  %>
-                <p><%= link_to (button_tag "Add to Cart"), cart_add_path(:id => product.id, :page => 'index') %></p>
-            <% elsif product.inventory == 0 %>
-                <p><%= button_tag "Out of Stock" %></p>
-            <% end %>
-        <% end %>
+    <% @products.each do |product| %>
+        <div class='col-md-3 col-sm-4 col-xs-12'>
+            <div class='product-index-container'>
+                <div class='index-image-wrapper'>
+                    <%= link_to(image_tag(product.image, :class => "index-image"), product) %>
+                </div>
+                <br>
+                <h2><%= link_to product.name, product, :class => "product-text" %></h2>
+                <br>
+                <% unless product.on_sale? %>
+                    <h2><%= number_to_currency(product.price_regular) %></h2>
+                    <br>
+                <% end %>
+                <% if product.on_sale? %>
+                    <p class='product-sale product-text'><%= number_to_currency(product.price_regular) %></p>
+                    <p class='product-text'><%= number_to_currency(product.price_sale) %></p>
+                <% end %>
+                <% if @current_user.present?%>
+                    <% if product.inventory != 0  %>
+                        <p><%= link_to (button_tag "Add to Cart"), cart_add_path(:id => product.id, :page => 'index') %></p>
+                    <% elsif product.inventory == 0 %>
+                        <p><%= button_tag "Out of Stock" %></p>
+                    <% end %>
+                <% end %>
+            </div>
         </div>
-    </div>
-<% end %>
+    <% end %>
 </div>
