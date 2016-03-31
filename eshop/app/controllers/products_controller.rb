@@ -22,9 +22,9 @@
 class ProductsController < ApplicationController
   def index
     if params[:search]
-      @products = Product.search(params[:search]).sort
+      @products = Product.search(params[:search]).where(:active => true).sort
     else
-      @products = Product.all.sort
+      @products = Product.where(:active => true).sort
     end
   end
 
@@ -78,6 +78,6 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:name, :inventory, :unit_cost_price, :description, :price_regular, :tax_applies, :price_sale, :on_sale, :business_id, :search, :tags)
+    params.require(:product).permit(:name, :inventory, :unit_cost_price, :description, :price_regular, :tax_applies, :price_sale, :on_sale, :business_id, :search, :tags, :active)
   end
 end
